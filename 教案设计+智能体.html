@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>算法设计与分析（C++）深度求索学习教案</title>
+    <style>
+        body { font-family: "宋体", "微软雅黑", sans-serif; max-width: 1000px; margin: 30px auto; padding: 20px; line-height: 1.8; }
+        .section { margin-bottom: 40px; }
+        h1, h2, h3 { color: #003366; font-family: "黑体", sans-serif; }
+        h1 { text-align: center; font-size: 24px; margin-bottom: 20px; }
+        h2 { font-size: 20px; border-bottom: 2px solid #ccc; padding-bottom: 8px; margin-top: 30px; }
+        h3 { font-size: 18px; margin-top: 25px; }
+        .course-info { background: #f9f9f9; padding: 15px; border: 1px solid #eee; margin-bottom: 30px; }
+        .course-info p { margin: 5px 0; }
+        .table-container { margin-top: 20px; overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+        th { background-color: #f5f5f5; font-weight: bold; }
+        .list-indent { margin-left: 30px; }
+        .download-btn {
+            display: block;
+            width: 200px;
+            margin: 30px auto;
+            padding: 12px;
+            background-color: #006699;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .download-btn:hover { background-color: #004466; }
+        .reference { font-size: 14px; color: #666; margin-top: 15px; }
+        .algorithm-code { background: #f5f5f5; padding: 10px; border-radius: 5px; font-family: Consolas, monospace; font-size: 14px; overflow-x: auto; }
+        .qrcode { transition: transform 0.3s ease; }
+        .qrcode:hover { transform: scale(1.1); }
+    </style>
+    <script src="https://unpkg.com/docx@7.0.0/build/index.js"></script>
+</head>
+<body>
+    <h1>算法设计与分析（C++）课程深度求索学习（DSL）教案</h1>
+    <h2 style="text-align: center; font-size: 22px; border-bottom: none;">《代码迷局：复杂问题的算法解码之旅》</h2>
+    
+    <div class="course-info">
+        <p><strong>课程名称</strong>：算法设计与分析（C++）</p>
+        <p><strong>课程模块</strong>：核心模块第二单元</p>
+        <p><strong>授课对象</strong>：2023级智能科学与技术专业</p>
+        <p><strong>授课教师</strong>：周贝贝</p>
+        <p><strong>联系方式</strong>：18851198863（微信同号）</p>
+        <p><strong>所属院校</strong>：上海第二工业大学</p>
+        <p><strong>学年学期</strong>：2025-2026学年第一学期</p>
+        <p><strong>学分/学时</strong>：3学分/48学时（本单元8学时）</p>
+    </div>
+
+    <section class="section">
+        <h2>一、课程定位与设计理念</h2>
+        <h3>（一）课程定位</h3>
+        <p>本课程是智能科学与技术专业的核心基础课程，旨在培养学生算法设计、分析与优化的能力，为后续人工智能、机器学习等高级课程奠定方法论基础。通过本单元学习，学生将掌握经典算法设计策略的C++实现，建立系统化的算法设计思维，并学会利用AI工具辅助复杂问题求解。</p>
+        
+        <h3>（二）设计理念</h3>
+        <p>基于"深度求索学习（DSL）"理论，本教案设计强调：</p>
+        <ol class="list-indent">
+            <li><strong>思维可视化</strong>：通过思维导图、决策日志等工具，将抽象的算法设计思维过程具象化</li>
+            <li><strong>认知冲突驱动</strong>：通过AI系统对比人类与机器设计差异，暴露认知偏差，激发深度学习动机</li>
+            <li><strong>工程化实践</strong>：模拟真实开发场景（如资源限制、多角色协作），培养算法工程师的实际问题解决能力</li>
+            <li><strong>技术批判性</strong>：辩证看待AI辅助工具的局限性，强调人机协作而非完全依赖</li>
+        </ol>
+    </section>
+
+    <section class="section">
+        <h2>二、教学目标与重难点</h2>
+        <h3>（一）教学目标</h3>
+        <div class="table-container">
+            <table>
+                <tr>
+                    <th>维度</th>
+                    <th>具体目标</th>
+                    <th>达成标准</th>
+                </tr>
+                <tr>
+                    <td rowspan="3">知识目标</td>
+                    <td>掌握分治、动态规划、贪心、回溯四大算法策略的核心思想与C++实现</td>
+                    <td>能独立编写至少3种策略的典型算法代码，代码符合C++11标准，时间复杂度分析准确</td>
+                </tr>
+                <tr>
+                    <td>理解算法复杂度分析理论与实践方法</td>
+                    <td>能推导O(nlogn)、O(2ⁿ)等常见复杂度表达式，解释不同数据规模下算法性能差异</td>
+                </tr>
+                <tr>
+                    <td>了解AI辅助算法设计的技术路径与应用场景</td>
+                    <td>能描述基于机器学习的算法优化基本原理，识别适合AI辅助的问题类型</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">能力目标</td>
+                    <td>建立系统化算法设计思维框架</td>
+                    <td>在模拟场景中完成"问题建模→策略选择→代码实现→性能优化"的完整流程</td>
+                </tr>
+                <tr>
+                    <td>培养人机协同解决复杂问题的能力</td>
+                    <td>能有效利用AI工具发现自身设计缺陷，提出改进策略并验证</td>
+                </tr>
+                <tr>
+                    <td>提升复杂问题抽象与建模能力</td>
+                    <td>从智能感知、数据处理等实际场景中提炼算法模型，选择最优策略</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">素养目标</td>
+                    <td>强化工程意识与资源约束思维</td>
+                    <td>在内存≤512MB、响应时间≤100ms等约束条件下设计可行算法方案</td>
+                </tr>
+                <tr>
+                    <td>培养技术批判思维与创新精神</td>
+                    <td>辩证看待AI技术的局限性，提出人机协作的创新模式</td>
+                </tr>
+            </table>
+        </div>
+
+        <h3>（二）教学重难点</h3>
+        <table>
+            <tr>
+                <th>重点</th>
+                <th>难点</th>
+                <th>解决策略</th>
+            </tr>
+            <tr>
+                <td>
+                    1. 四大算法策略的适用场景与实现差异<br>
+                    2. 算法复杂度的数学推导与实际意义<br>
+                    3. C++模板编程实现通用算法
+                </td>
+                <td>
+                    1. 动态规划状态转移方程的构建<br>
+                    2. 复杂问题的算法策略选择决策<br>
+                    3. 资源约束下的多目标优化
+                </td>
+                <td>
+                    1. 通过可视化工具对比不同策略执行过程<br>
+                    2. 引入AI辅助系统提供决策参考<br>
+                    3. 设计渐进式难度的实践任务<br>
+                    4. 组织小组协作与Peer Review
+                </td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="section">
+        <h2>三、教学内容设计</h2>
+        <h3>（一）知识体系架构</h3>
+        <div class="table-container">
+            <table>
+                <caption>表1：知识模块与学时分配</caption>
+                <thead>
+                    <tr>
+                        <th>模块</th>
+                        <th>子模块</th>
+                        <th>核心知识点</th>
+                        <th>学时</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="3">基础理论</td>
+                        <td>算法复杂度分析</td>
+                        <td>大O表示法、常见复杂度类别、递归方程求解（主定理）</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>C++高级编程</td>
+                        <td>模板编程、智能指针、lambda表达式、STL容器应用</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>问题建模方法</td>
+                        <td>形式化描述问题、抽象数据模型、定义问题边界</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4">算法策略</td>
+                        <td>分治策略</td>
+                        <td>归并排序、快速排序、最近点对问题、Strassen矩阵乘法</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>动态规划</td>
+                        <td>最优子结构、重叠子问题、背包问题、最长公共子序列</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>贪心算法</td>
+                        <td>贪心选择性质、哈弗曼编码、最小生成树（Prim/Kruskal）</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>回溯算法</td>
+                        <td>状态空间树、剪枝策略、八皇后问题、图着色问题</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">实践应用</td>
+                        <td>真实场景建模</td>
+                        <td>智能感知（图像分割）、路径规划（A*算法）、数据压缩</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>AI辅助设计</td>
+                        <td>算法推荐系统、代码自动生成、性能预测模型</td>
+                        <td>2</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>（二）深度求索学习活动设计</h3>
+        <div class="table-container">
+            <table>
+                <caption>表2：DSL教学活动设计</caption>
+                <thead>
+                    <tr>
+                        <th>环节</th>
+                        <th>活动内容</th>
+                        <th>思维训练目标</th>
+                        <th>工具支持</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>一、预习感知</td>
+                        <td>
+                            <p><strong>必做任务</strong></p>
+                            <ol class="list-indent">
+                                <li>观看微课《算法复杂度分析进阶》（15分钟）</li>
+                                <li>完成LeetCode上3道分治策略题目（系统自动判题）</li>
+                                <li>
+                                    使用AI助手"算法小蜜"提交1个关于递归复杂度的困惑问题<br>
+                                    <img src="data:image/png;base64,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" alt="算法小蜜二维码" class="qrcode" style="width:150px; margin:10px 0;">
+                                </li>
+                            </ol>
+                            <p><strong>选做任务</strong></p>
+                            <p>在算法可视化平台对比归并排序与快速排序的执行过程，截图标注3个关键性能差异点</p>
+                        </td>
+                        <td>
+                            1. 建立算法策略初步认知<br>
+                            2. 暴露直觉思维中的认知偏差<br>
+                            3. 培养问题意识与自主学习能力
+                        </td>
+                        <td>
+                            • 微课视频库（含C++代码演示）<br>
+                            • LeetCode自动判题系统<br>
+                            • AI答疑助手（实时解析复杂度误区）
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>二、目标锚定</td>
+                        <td>
+                            <p><strong>情境模拟</strong></p>
+                            <p>扮演"边缘计算设备算法工程师"，在虚拟工作台中接收任务：</p>
+                            <p>"为智能安防摄像头设计目标检测算法，要求：</p>
+                            <ul class="list-indent">
+                                <li>内存占用≤256MB</li>
+                                <li>单帧处理时间≤30ms</li>
+                                <li>检测准确率≥95%</li>
+                            </ul>
+                            <p><strong>任务输出</strong></p>
+                            <p>基于约束条件选择算法策略并撰写《算法选型可行性报告》</p>
+                        </td>
+                        <td>
+                            1. 建立"业务需求→技术约束→算法选型"的关联思维<br>
+                            2. 强化工程实践中的资源约束意识
+                        </td>
+                        <td>
+                            • 虚拟编程环境（含资源监控仪表盘）<br>
+                            • 需求规格说明书模板<br>
+                            • 算法评估矩阵工具
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>三、原始思维外化</td>
+                        <td>
+                            <p><strong>独立设计</strong></p>
+                            <ol class="list-indent">
+                                <li>绘制算法设计思维导图（问题建模→策略选择→代码框架）</li>
+                                <li>使用"有声思考法"录制决策过程（如"选择贪心算法是因为..."）</li>
+                                <li>编写初始版本代码（允许伪代码）</li>
+                            </ol>
+                            <p><strong>知识补救</strong></p>
+                            <p>
+                                遗忘理论时可查询"算法课程导师"智能体<br>
+                                <img src="data:image/png;base64,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" alt="算法课程导师二维码" class="qrcode" style="width:150px; margin:10px 0;">
+                            </p>
+                        </td>
+                        <td>
+                            1. 可视化初始思维路径，暴露逻辑漏洞<br>
+                            2. 培养"元认知监控"能力（意识到自身知识盲区）
+                        </td>
+                        <td>
+                            • 思维导图工具（XMind）<br>
+                            • 语音备忘录功能<br>
+                            • 智能答疑系统（含算法知识库）
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>四、人机思维碰撞</td>
+                        <td>
+                            <p><strong>方案对比</strong></p>
+                            <ol class="list-indent">
+                                <li>提交设计方案至AI优化系统"AlgoOpt"，获取：</li>
+                                <ul>
+                                    <li>复杂度分析报告</li>
+                                    <li>多策略对比雷达图（时间/空间/可读性）</li>
+                                    <li>改进建议（如"将递归改为迭代以避免栈溢出"）</li>
+                                </ul>
+                                <li>师生共同分析AI推理路径</li>
+                                <li>填写《思维对比表》，记录人类与AI决策差异</li>
+                            </ol>
+                        </td>
+                        <td>
+                            1. 揭示"经验主义""复杂度误判"等认知偏差<br>
+                            2. 学习AI的"多维评估模型"
+                        </td>
+                        <td>
+                            • AlgoOpt系统（提供代码优化建议）<br>
+                            • 思维对比模板（含决策维度checklist）
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>五、深度策略优化</td>
+                        <td>
+                            <p><strong>问题链探索</strong></p>
+                            <p>
+                                与"算法学习伙伴"智能体对话，解决如：<br>
+                                <img src="data:image/png;base64,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" alt="算法学习伙伴二维码" class="qrcode" style="width:150px; margin:10px 0;">
+                            </p>
+                            <ul class="list-indent">
+                                <li>"如何优化动态规划算法的空间复杂度？"</li>
+                                <li>"贪心算法不适用时的替代策略选择"</li>
+                                <li>"如何处理大数据量下的内存溢出问题"</li>
+                            </ul>
+                            <p><strong>虚拟验证</strong></p>
+                            <p>在CodeRunner模拟环境中测试不同方案的实际运行效率，生成性能对比报告</p>
+                            <p><strong>多角色协作</strong></p>
+                            <p>分组扮演算法工程师、测试工程师、架构师，从不同视角评估方案</p>
+                        </td>
+                        <td>
+                            1. 培养"问题拆解-假设验证-方案迭代"的工程思维<br>
+                            2. 理解算法理论与工程实践的差异
+                        </td>
+                        <td>
+                            • 代码模拟运行环境（含100+测试用例）<br>
+                            • 角色视角提示卡（含专业评估指标）<br>
+                            • 性能分析计算器
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>六、迁移创新实践</td>
+                        <td>
+                            <p><strong>新情境任务</strong></p>
+                            <p>在豆包平台生成包含未学策略的复杂问题（如遗传算法求解TSP问题）</p>
+                            <p><strong>生成式作业</strong></p>
+                            <p>
+                                使用"算法考官"工具创建个性化考核案例，要求：<br>
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQCAIAAAAP3aGbAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAIsElEQVR4nO3dSXLcSBAAweaY/v9lzQ8EmiVrCdD9LjbQS1gdkMqvv3//fgAK/jt9AQDfJVhAhmABGYIFZAgWkCFYQIZgARmCBWQIFpAhWECGYAEZggVkCBaQIVhAhmABGYIFZAgWkCFYQIZgARmCBWT8Gf77r6+vH7mOmz3u6fj3m3D/mo/HD3H4Duz5C8O/v9r8HXiB+W/BCQvIECwgQ7CADMECMgQLyBAsIEOwgAzBAjIEC8gQLCBjOprz6AWDKY9WT43c/x7Or3D1/NOGyZjVH9P9X4MN00VOWECGYAEZggVkCBaQIVhAhmABGYIFZAgWkCFYQIZgARnLR3MerX6c//hAww3bUG64hn8bzifdMN50fHnS639KHycsIESwgAzBAjIEC8gQLCBDsIAMwQIyBAvIECwgQ7CAjPOjOS8wHImYL3S5YWZiteODL7/hTb6fExaQIVhAhmABGYIFZAgWkCFYQIZgARmCBWQIFpDhSfcfsPoZ6NWPwt+womJ4jzfcAhs4YQEZggVkCBaQIVhAhmABGYIFZAgWkCFYQIZgARmCBWScH815/f/t/4IVEhtuYfVLvOBTePSCW3jkhAVkCBaQIVhAhmABGYIFZAgWkCFYQIZgARmCBWQIFpCxfDTnN6wz+fc9rt55s8H9tzC/gNV/YcP00m/ghAVkCBaQIVhAhmABGYIFZAgWkCFYQIZgARmCBWQIFpDxdXzsg0fHp0Y2DIXcP7szfAk/tB/hhAVkCBaQIVhAhmABGYIFZAgWkCFYQIZgARmCBWQIFpBxfjRnODNxw9SIdSnH73HD13j1p3D8FjZ8iPOXcMICMgQLyBAsIEOwgAzBAjIEC8gQLCBDsIAMwQIy/qx+gdUPvx5/PnjPNQwv4Piz8qv3aGy4gOObPuZfs+NDI3NOWECGYAEZggVkCBaQIVhAhmABGYIFZAgWkCFYQIZgARnT0ZwNj/OvXk+wempk9UTFhr9w/6f8aMPX4PiEVmK2ZsgJC8gQLCBDsIAMwQIyBAvIECwgQ7CADMECMgQLyBAsIGM6mjMfRxiORMzHEe6fqDh+hY82DIWYLnr0gr0+j5ywgAzBAjIEC8gQLCBDsIAMwQIyBAvIECwgQ7CADMECMqajOS9wfOBgw3jTavevJppf4fE3eW71N3nDT8kJC8gQLCBDsIAMwQIyBAvIECwgQ7CADMECMgQLyBAsIGP5aM7xmYzVF/D4FzZcwKPXr5zZMBRy/3s4vIb7lzN9nLCAEMECMgQLyBAsIEOwgAzBAjIEC8gQLCBDsICM6ZPuxzc4PNrwHPnqp7Tnjj/ivPpT2DDwsNoLbmEDJywgQ7CADMECMgQLyBAsIEOwgAzBAjIEC8gQLCBDsICMwBKK4d9/dHwJxQarr/D41MgNt7B6W8pxN9yCExaQIVhAhmABGYIFZAgWkCFYQIZgARmCBWQIFpAhWEDGdDRnPnJxfF3K/SMRx22YyTg+oTV/idXzT8eX4hwfwPo4YQEhggVkCBaQIVhAhmABGYIFZAgWkCFYQIZgARmCBWQs35ozN5x42DAucHy66IZ1JqsvYPXnePzv3/8ZHZ8N+jhhASGCBWQIFpAhWECGYAEZggVkCBaQIVhAhmABGYIFZHwd31ay+nn/DRMPq9elzN0wVPFvq+dCjn9Rj1/Ao+O/lO9wwgIyBAvIECwgQ7CADMECMgQLyBAsIEOwgAzBAjIEC8iYjuY8v8DpkYv5Da4eWTi+1yextuf4/NPxX8qj41e44ZvshAVkCBaQIVhAhmABGYIFZAgWkCFYQIZgARmCBWQsf9L9+Qpmj8/e8Ihz/VH4Gx5kH9rwsP6j+78GqwceHllCAfwiggVkCBaQIVhAhmABGYIFZAgWkCFYQIZgARmCBWTkl1Dc7/534PhgzWc8F3J8kceea1jqhim3R05YQIZgARmCBWQIFpAhWECGYAEZggVkCBaQIVhAhmABGX+G//4Fy0gerd4mcnzmoz5T8h0bNr4c30kzdP8VfpywgBDBAjIEC8gQLCBDsIAMwQIyBAvIECwgQ7CADMECMqajOfPH+e+fO1k9kbBhJOL48M39t7D6m3z8hzB3w+yOExaQIVhAhmABGYIFZAgWkCFYQIZgARmCBWQIFpAhWEBGYGvOavNbGK5LmRu+xIa5mRdsHjp+C6vdP2b3ccICQgQLyBAsIEOwgAzBAjIEC8gQLCBDsIAMwQIyli+hmDu+fWC1DQ8QH3+KerX736INX7PVazJWX8B3OGEBGYIFZAgWkCFYQIZgARmCBWQIFpAhWECGYAEZggVkLF9C8QLDDQurl1zMHR9O+o7hpo/7P4XjE1rH34HvcMICMgQLyBAsIEOwgAzBAjIEC8gQLCBDsIAMwQIyBAvImI7mPLp/7GPDspDhP7//PTzuBe/h/QuobpjdccICMgQLyBAsIEOwgAzBAjIEC8gQLCBDsIAMwQIyBAvIWD6a8+j1K2FWLzuZX8OGjTLHP4W54Ztww8qZoRs+ZScsIEOwgAzBAjIEC8gQLCBDsIAMwQIyBAvIECwgQ7CAjPOjOS8wnEg4PvGwYaJi9fRP4hZWe7zC4Xt4/AY/TlhAiGABGYIFZAgWkCFYQIZgARmCBWQIFpAhWECGJ91/wHC/wA0PEP/bhgUKx58jn9/j6q+BXSQfJywgRLCADMECMgQLyBAsIEOwgAzBAjIEC8gQLCBDsICM86M59w+mPBpOPDxaPfFwfCyGHzH8mG6YvHnkhAVkCBaQIVhAhmABGYIFZAgWkCFYQIZgARmCBWQIFpDxtXqq4wXuH3w5PjOxeqHL3G/4og4dX9vzHU5YQIZgARmCBWQIFpAhWECGYAEZggVkCBaQIVhAhmABGdPRHIBtnLCADMECMgQLyBAsIEOwgAzBAjIEC8gQLCBDsIAMwQIyBAvIECwgQ7CADMECMgQLyBAsIEOwgAzBAjIEC8gQLCBDsICM/wGiF/c0wEizgwAAAABJRU5ErkJggg==" alt="算法考官二维码" class="qrcode" style="width:150px; margin:10px 0;">
+                            </p>
+                            <ol class="list-indent">
+                                <li>包含至少2个干扰因素（如大数据量、特殊数据分布）</li>
+                                <li>提供多版本解决方案（暴力法+优化法）</li>
+                                <li>撰写《算法设计决策报告》</li>
+                            </ol>
+                        </td>
+                        <td>
+                            1. 检验策略迁移能力（从已知策略推导未知场景解法）<br>
+                            2. 提升抗干扰能力（识别数据噪声对算法性能的影响）
+                        </td>
+                        <td>
+                            • 场景化问题生成器<br>
+                            • 代码评审工具（自动检测算法缺陷）<br>
+                            • 报告模板（含决策依据填写栏）
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>七、反思与评价</td>
+                        <td>
+                            <p><strong>决策日志</strong></p>
+                            <p>按"初始假设→AI对比→最终方案"三阶段记录思维演进，标注关键转折点</p>
+                            <p><strong>算法缺陷分析</strong></p>
+                            <p>小组汇报模拟低效算法案例的优化过程（如冒泡排序在近乎有序数组中的性能改进）</p>
+                            <p><strong>元认知提问</strong></p>
+                            <p>讨论"AI在哪些场景下可能误判算法适用性？如何构建人机协作的质量控制流程？"</p>
+                        </td>
+                        <td>
+                            1. 固化"假设-检验-修正"的科学思维模式<br>
+                            2. 培养对AI技术的批判性使用能力
+                        </td>
+                        <td>
+                            • 思维演进模板（含认知冲突记录栏）<br>
+                            • 低效算法案例库（含专家优化视频）<br>
+                            • 小组讨论评分表
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>四、教学评价设计</h2>
+        <h3>（一）过程性评价体系</h3>
+        <div class="table-container">
+            <table>
+                <caption>表3：过程性评价量规</caption>
+                <thead>
+                    <tr>
+                        <th>评价维度</th>
+                        <th>评价指标</th>
+                        <th>权重</th>
+                        <th>评价方式</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="3">知识掌握</td>
+                        <td>算法策略理解深度</td>
+                        <td>15%</td>
+                        <td>在线测试、课堂问答</td>
+                    </tr>
+                    <tr>
+                        <td>复杂度分析准确性</td>
+                        <td>10%</td>
+                        <td>作业提交、CodeReview</td>
+                    </tr>
+                    <tr>
+                        <td>C++实现规范性</td>
+                        <td>10%</td>
+                        <td>代码风格检查工具</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">能力发展</td>
+                        <td>问题建模能力</td>
+                        <td>15%</td>
+                        <td>案例分析报告</td>
+                    </tr>
+                    <tr>
+                        <td>策略选择合理性</td>
+                        <td>20%</td>
+                        <td>AI系统评估+人工评审</td>
+                    </tr>
+                    <tr>
+                        <td>算法优化效果</td>
+                        <td>15%</td>
+                        <td>性能对比测试</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">素养提升</td>
+                        <td>思维演进记录完整性</td>
+                        <td>5%</td>
+                        <td>决策日志检查</td>
+                    </tr>
+                    <tr>
+                        <td>技术批判性思维</td>
+                        <td>10%</td>
+                        <td>小组讨论评分、反思报告</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>（二）阶段性考核设计</h3>
+        <table>
+            <tr>
+                <th>考核形式</th>
+                <th>内容</th>
+                <th>时间</th>
+                <th>占比</th>
+            </tr>
+            <tr>
+                <td>单元测试</td>
+                <td>算法理论与复杂度分析</td>
+                <td>第4、8周</td>
+                <td>20%</td>
+            </tr>
+            <tr>
+                <td>编程作业</td>
+                <td>分治、动态规划等策略实现</td>
+                <td>每周布置</td>
+                <td>30%</td>
+            </tr>
+            <tr>
+                <td>项目实践</td>
+                <td>智能场景算法设计与优化</td>
+                <td>第12周</td>
+                <td>30%</td>
+            </tr>
+            <tr>
+                <td>期末笔试</td>
+                <td>算法设计理论与应用</td>
+                <td>期末周</td>
+                <td>20%</td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="section">
+        <h2>五、教学资源与工具</h2>
+        <h3>（一）教材与参考资料</h3>
+        <ol class="list-indent">
+            <li>《算法导论》（第3版），Thomas H. Cormen等著，机械工业出版社</li>
+            <li>《计算机算法设计与分析》（第5版），王晓东编著，电子工业出版社</li>
+            <li>《C++ Primer》（第5版），Stanley B. Lippman等著，机械工业出版社</li>
+            <li>《算法设计与分析》MOOC课程（Coursera平台）</li>
+        </ol>
+
+        <h3>（二）教学工具</h3>
+        <table>
+            <tr>
+                <th>工具名称</th>
+                <th>功能描述</th>
+                <th>应用场景</th>
+            </tr>
+            <tr>
+                <td>AlgoOpt系统</td>
+                <td>AI辅助算法设计与优化</td>
+                <td>思维对比、方案优化</td>
+            </tr>
+            <tr>
+                <td>CodeRunner</td>
+                <td>代码模拟运行与性能分析</td>
+                <td>方案验证、缺陷调试</td>
+            </tr>
+            <tr>
+                <td>算法可视化平台</td>
+                <td>动态展示算法执行过程</td>
+                <td>概念理解、策略对比</td>
+            </tr>
+            <tr>
+                <td>思维导图工具</td>
+                <td>思维路径记录与分析</td>
+                <td>原始思维外化</td>
+            </tr>
+            <tr>
+                <td>智能答疑系统</td>
+                <td>实时解答算法理论问题</td>
+                <td>知识补救、理论查询</td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="section">
+        <h2>六、教学反思与持续改进</h2>
+        <p>本教案设计注重将深度求索学习理念融入算法教学全过程，通过人机思维碰撞、多角色协作等创新方式，引导学生从被动接受知识转向主动构建思维体系。在实施过程中，需重点关注：</p>
+        <ol class="list-indent">
+            <li>AI辅助工具的适度使用，避免学生产生依赖心理，强调人机协作而非替代</li>
+            <li>动态规划等抽象概念的教学策略优化，可考虑引入更多生活化案例</li>
+            <li>小组协作中个体参与度的监控机制，确保每位学生深度参与思维碰撞</li>
+            <li>教学评价体系中对"技术批判性思维"维度的细化与可操作性改进</li>
+        </ol>
+        
+        <p>后续将通过以下方式持续改进：</p>
+        <ol class="list-indent">
+            <li>收集学生决策日志数据，分析典型认知偏差，针对性优化教学案例</li>
+            <li>开发更多适合算法教学的AI辅助工具，如复杂度可视化分析器</li>
+            <li>建立跨校教学案例共享机制，收集不同学情下的教学反馈</li>
+            <li>探索算法教学与思政教育的深度融合，培养学生的科技伦理意识</li>
+        </ol>
+    </section>
+
+    <section class="section">
+        <h2>七、教学支持与保障</h2>
+        <h3>（一）技术支持</h3>
+        <p>学校信息技术中心提供全天候系统维护，确保AlgoOpt、CodeRunner等在线平台稳定运行。课程组配备技术助理，负责课前环境检查、课中技术故障排除。</p>
+        
+        <h3>（二）资源保障</h3>
+        <p>教材已提前一学期采购到位，电子资源库同步更新最新学术论文与案例。实验室设备每学期检修维护，确保C++开发环境的一致性与稳定性。</p>
+        
+        <h3>（三）安全预案</h3>
+        <p>建立双平台备份机制，在线教学平台出现故障时可立即切换至备用系统。重要教学数据每日自动备份，确保教学连续性。</p>
+    </section>
+
+    <section class="section">
+        <h2>八、附件</h2>
+        <h3>（一）教学进度表</h3>
+        <div class="table-container">
+            <table>
+                <tr>
+                    <th>周次</th>
+                    <th>教学内容</th>
+                    <th>教学方式</th>
+                    <th>考核方式</th>
+                </tr>
+                <tr>
+                    <td>1-2</td>
+                    <td>算法复杂度分析与C++高级编程</td>
+                    <td>讲授+实践</td>
+                    <td>在线测试</td>
+                </tr>
+                <tr>
+                    <td>3-5</td>
+                    <td>分治策略与动态规划</td>
+                    <td>讲授+案例分析</td>
+                    <td>编程作业</td>
+                </tr>
+                <tr>
+                    <td>6-8</td>
+                    <td>贪心算法与回溯算法</td>
+                    <td>讲授+小组讨论</td>
+                    <td>项目实践</td>
+                </tr>
+                <tr>
+                    <td>9-10</td>
+                    <td>真实场景建模与AI辅助设计</td>
+                    <td>实践+研讨</td>
+                    <td>案例报告</td>
+                </tr>
+                <tr>
+                    <td>11-12</td>
+                    <td>综合项目实践与展示</td>
+                    <td>项目制学习</td>
+                    <td>现场演示+答辩</td>
+                </tr>
+                <tr>
+                    <td>13-14</td>
+                    <td>复习与总结</td>
+                    <td>讲授+答疑</td>
+                    <td>复习作业</td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>期末考核</td>
+                    <td>笔试</td>
+                    <td>闭卷考试</td>
+                </tr>
+            </table>
+        </div>
+        
+        <h3>（二）考核样题</h3>
+        <p>1. 分析归并排序算法的时间复杂度，并给出推导过程。</p>
+        <p>2. 用动态规划方法解决0-1背包问题，要求写出状态转移方程和C++代码。</p>
+        <p>3. 设计一个贪心算法解决活动选择问题，并证明其正确性。</p>
+        <p>4. 描述回溯算法的基本思想，并用它解决N皇后问题。</p>
+    </section>
+
+    <button class="download-btn" onclick="downloadDocx()">下载教案文档</button>
+
+    <script>
+        function downloadDocx() {
+            // 提取教案内容并转换为Word文档的逻辑
+            alert("教案下载功能已触发，实际环境中将生成Word文档。");
+        }
+    </script>
+</body>
+</html>
